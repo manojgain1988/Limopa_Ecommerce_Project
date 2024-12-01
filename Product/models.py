@@ -93,6 +93,5 @@ class Images(models.Model):
     title = models.CharField(max_length=200, blank=True)
     image = models.ImageField(blank=True, upload_to='product/')
    
-    
     def __str(self):
         return self.title
