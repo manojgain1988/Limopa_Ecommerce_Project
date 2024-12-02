@@ -1,15 +1,15 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from django.urls import reverse
-
+from mptt.models import MPTTModel, TreeForeignKey
 # Create your models here.
 
-class Category(models.Model):
+class Category(MPTTModel):
     status = (
         ('True', 'True'),
         ('False', 'False'),
     )
-    parent = models.ForeignKey(
+    parent = TreeForeignKey(
         'self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
 
     title = models.CharField(max_length=200)
@@ -22,8 +22,9 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     
-    # class MPTTMeta:
-    #     order_insertion_by = ['title']
+    class MPTTMeta:
+        order_insertion_by = ['title']
+
 
     def ImageUrl(self):
             if self.image:

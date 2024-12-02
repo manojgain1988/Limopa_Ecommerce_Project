@@ -40,7 +40,7 @@ def product_single(request,id):
 
 
 
-def contact(request):
+def contact_us(request):
     setting = Setting.objects.get(id=1)
     context={
         'setting' : setting ,

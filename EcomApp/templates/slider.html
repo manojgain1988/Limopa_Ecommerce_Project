@@ -11,26 +11,24 @@
                                 <h2 class="categories-toggle"><span>categories</span></h2>
                             </div>
                             <div id="cate-toggle" class="category-menu-list">
+                                
+                                {% load mptt_tags %}
                                 <ul>
-                                    {% for p in category %}
-                                    
-                                    
-                                    <li class="right-menu"><a href="shop-left-sidebar.html">{{p.title}}</a>
+                                    {% recursetree category %}
+                                    <li class="right-menu"><a href="shop-left-sidebar.html">{{node.title}}</a>
+                                        {% if not node.is_leaf_node %}
                                         <ul class="cat-mega-menu">
                                             <li class="right-menu cat-mega-title">
-                                               <a href="shop-left-sidebar.html">Prime Video</a>
+                                               <a href="shop-left-sidebar.html">Sub Catagory</a>
                                                 <ul>
-                                                    <li><a href="#">All Videos</a></li>
+                                                    <li><a href="#">{{ children }}</a></li>
                                                     
                                                 </ul>
                                             </li>
-                                            
-                                            
                                         </ul>
+                                        {% endif %}  
                                     </li>
-                                    
-                                    {% endfor %}
-                                    
+                                    {% endrecursetree %}
                                 </ul>
                             </div>
                         </div>

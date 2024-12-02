@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'EcomApp',
     'Product',
+    'mptt',
 ]
 
 MIDDLEWARE = [

@@ -81,12 +81,15 @@
                     <form action="#" class="hm-searchbox">
                         <select class="nice-select select-search-category">
                             <option value="0">All</option>  
-                            {% for p in category %}
                             
-                            <option value="10">{{p.title}}</option>                     
-                            <option value="17">- -  Prime Video</option>                    
-                            {% endfor %}                       
-                            
+                            {% load mptt_tags %}
+                            {% recursetree category %}
+                            <option value="10">{{ node.title }}</option>
+                            {% if not node.is_leaf_node %}                   
+                            <option value="17">--{{ children }}</option>                    
+                            {% endif %}       
+                            {% endrecursetree %}
+
                         </select>
                         <input type="text" placeholder="Enter your search key ...">
                         <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
